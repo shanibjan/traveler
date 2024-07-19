@@ -1,3 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import '~owl.carousel/dist/assets/owl.carousel.css';
+@import '~owl.carousel/dist/assets/owl.theme.default.css';
+
+@font-face {
+  font-family: "GorditaRegular";
+
+  src: url("../src/gordita/Gordita\ Regular.woff");
+}
+@font-face {
+  font-family: "GorditaMedium";
+
+  src: url("../src/gordita/Gordita\ Medium.woff");
+}
+@font-face {
+  font-family: "GorditaBold";
+
+  src: url("../src/gordita/Gordita\ Bold.woff");
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -11,3 +32,172 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.owl-carousel .owl-theme .owl-loaded .owl-drag{
+  
+}
+.owl-stage-outer{
+  height: 650px;
+ 
+  top: -50px;
+}
+.card{
+  margin: auto;
+  width: 20rem;
+  overflow: hidden;
+  
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  padding: 0.75rem;
+  --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+  /* transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); */
+}
+
+.bg-place {
+  transition: .5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  position: relative;
+    background-size: 105%;
+    background-position: center;
+   
+}
+
+
+.dropdown {
+  
+  cursor: pointer;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  z-index: 100;
+ 
+  align-items: center;
+  display: flex;
+}
+
+.dropdown-menu {
+  background-color: #fff;
+  list-style-type: none;
+  display: grid;
+  padding: 12px 50px;
+  position: absolute;
+  line-height: 54px;
+  opacity: 0;
+  text-align: left;
+  top: 86%;
+  visibility: hidden;
+  z-index: -99999;
+  transition: .03s cubic-bezier(0.075, 0.82, 0.165, 1);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 200px;
+  justify-content: center;
+  text-align: center;
+
+ 
+}
+.dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  top: 100%;
+  /* animation: slideleft .2s cubic-bezier(0.455, 0.03, 0.515, 0.955) ; */
+  transition:.4s cubic-bezier(0.075, 0.82, 0.165, 1);
+  
+}
+
+.register{
+  width: 40%;
+  display: inline-block;
+  margin: 6% 0;
+}
+.register h1{
+  margin-bottom: 6%;
+  
+}
+.register h2{
+ 
+  margin-bottom: 11%;
+}
+.informations input{
+  border: 1px solid #E9E7E7;
+  width: 100%;
+  height: 45px;
+  outline: none;
+  font-weight: 800;
+  font-size: 16px;
+  margin: 1% 0;
+ 
+  padding: 2%;
+  color: #787676;
+  text-transform: capitalize;
+}
+
+.informations ::-ms-input-placeholder { /* Edge 12-18 */
+  color: #cfcccc;
+  
+}
+
+::placeholder {
+  color: #cfcccc;
+ 
+}
+.informations label{
+  float: left;
+  color: #787676;
+  margin-top: 5%;
+}
+.create{
+  display: block;
+  text-decoration: none;
+  background-color: #515def;
+  padding: 9px 3%;
+  color: #fff;
+  margin: 21% 0 7%;
+  transition:  2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.create:hover{
+  background-color: #040404;
+ 
+}
+.create p{
+  
+  color: aliceblue;
+ 
+}
+.return-store{
+  text-decoration: none;
+  color: black;
+  
+  width: 42%;
+  display: block;
+  margin: 0 auto;
+}
+.return-store:after {
+  display:block;
+  content: '';
+  border-bottom: solid 2px #060606;  
+  transform: scaleX(0);  
+  transition: transform 250ms ease-in-out;
+}
+.return-store:hover:after {
+  transform: scaleX(1); 
+ }
+ .stars-product{
+  border: 1px solid #E9E7E7;
+  width: 100%;
+  height: 45px;
+  outline: none;
+  font-weight: 800;
+  font-size: 16px;
+  margin: 1% 0;
+  font-family: 'Gordita Regular', sans-serif;
+  padding: 2%;
+  color: #787676;
+
+}
+
+
+  
