@@ -12,7 +12,7 @@ import {
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
 
 
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { onValue, ref, remove, set } from "firebase/database";
 import { uid } from "uid";
 import { database } from "../firebase";
@@ -20,11 +20,13 @@ import { database } from "../firebase";
 function Hotel() {
 let date=new Date()
   const[count,setCount]=useState(0)
+  const[paymentId,setPaymentId]=useState()
   const { pathname } = useLocation();
   const location=useLocation()
   const[hotel,setHotel]=useState([])
+  console.log(hotel);
   const[rooms,setRooms]=useState(15)
-  
+  const nav=useNavigate()
   const[star,setStar]=useState('1')
   const[booked,setBooked]=useState([])
   const [fav,setFAv]=useState([])
@@ -66,9 +68,9 @@ let date=new Date()
       const data = snapshot.val();
      
       if (data) {
-       
+      
 
-        setHotel(data);
+       setHotel(data)
       } else {
         setHotel([]);
       }
@@ -92,22 +94,34 @@ let date=new Date()
   const reserve=()=>{
     if(location.state!=null && rooms>=star){
 
-      const uuid=uid()
-      set(ref(database, "booked_hotels" + `/${uuid}`), {
-        uuid,
-        userEmail:location.state.email,
-        roomCount:star,
-        hotelName:hotel.hotel,
-        spot:hotel.spot,
-        date:date,
-        rate:totalOfferrate,
-        image:hotel.url1
-           
-      });
-        window.alert('room booked')
-      
-    }else if(star>rooms){
-      window.alert('Room is fully Booked')
+      const options = {
+        key: 'rzp_test_VYT3qiUFj68Unw',
+        key_secret: 'UUu8gOXV8YOdqIS2gYtQCTOv',
+        amount: totalOfferrate * 100,
+        currency: 'INR',
+        name: 'Your Company Name',
+        description: 'Test Transaction',
+       
+        handler: (response) => {
+          setPaymentId(response.razorpay_payment_id)
+          // You can also verify the payment on the server-side
+          // 5559 4265 3785 2759
+        },
+        prefill: {
+          name: 'John Doe',
+          email: 'john.doe@example.com',
+          contact: '9999999999',
+        },
+        notes: {
+          address: 'Corporate Office',
+        },
+        theme: {
+          color: '#515DEF',
+        },
+      };
+  
+      const rzp1 = new window.Razorpay(options);
+      rzp1.open();
     }
     else{
       window.alert('Please login')
@@ -118,7 +132,32 @@ let date=new Date()
     
     
   }
+useEffect(()=>{
+  if(paymentId){
+    if(location.state!=null && rooms>star ){
 
+      const uuid=uid()
+      set(ref(database, "booked_hotels" + `/${uuid}`), {
+        uuid,
+        userEmail:location.state.email,
+        roomCount:star,
+        hotelName:hotel.hotel,
+        spot:hotel.spot,
+        date:date,
+        rate:totalOfferrate,
+        image:hotel.url1,
+        date:new Date().toDateString() 
+           
+      });
+        window.alert('room booked')
+        nav('/bookings',{state:{name:location.state.name,email:location.state.email}})
+      
+    }else if(star>rooms){
+      window.alert('Room is fully Booked')
+    }
+  }
+  
+},[reserve])
   useEffect(()=>{
   
     booked.map((book)=>{
@@ -131,6 +170,8 @@ let date=new Date()
       
       }
     })
+
+    
    },[reserve])
 
    const addFav=()=>{
@@ -168,8 +209,7 @@ let date=new Date()
   return (
     <div>
       <NavBar />
-      <button onClick={()=>setCount(count+1)} > hh</button>
-      {count}
+     
       <div>
         <div className="mx-40 my-24 font-gorditaMedium">
           <div className="grid grid-cols-3 text-center ">

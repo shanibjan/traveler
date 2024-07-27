@@ -88,7 +88,7 @@ function Hotels() {
                     </div>
                     <div className="flex justify-between text-gray-700 font-gordita mt-5 ">
                       <h5>1 Night,2 Adults</h5>
-                      <div className="flex justify-between w-[130px]">
+                      <div className="flex justify-between w-[150px]">
                         <h5 className="text-red-600 line-through">₹ {osl.rate}</h5>
                         <h5>₹ {osl.offerrate}</h5>
                       </div>
@@ -98,7 +98,7 @@ function Hotels() {
                     <button onClick={()=>{
                       
                       set(ref(database, "hotel-overview"), osl);
-                      if(location.state){
+                      if(location.state != null){
 
                         navigate('/hotel',{state:{name:location.state.name,email:location.state.email}})
                       }else{

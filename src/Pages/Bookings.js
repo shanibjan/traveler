@@ -39,6 +39,7 @@ function Bookings() {
   return (
     <div>
       <NavBar />
+        
       <div className="mx-40 my-24 grid grid-cols-2 gap-16">
         {newBooked ? newBooked.map((items)=>{
             return(
@@ -48,7 +49,7 @@ function Bookings() {
             <div>
               <h1>{items.hotelName}</h1>
               <h4>{items.spot}</h4>
-              <img className="h-[220px]" src={items.image} alt="" />
+              <img className="h-[220px] w-[345px]" src={items.image} alt="" />
             </div>
             <div className="flex items-end">
               <div>
